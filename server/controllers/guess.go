@@ -7,10 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// type Randomzied struct {
-// 	Number int
-// }
-
 var Num int = rand.Intn(10)
 
 func randomInt(c *int) {

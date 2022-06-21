@@ -3,7 +3,7 @@ import React, { useState, SyntheticEvent}  from 'react'
 const Guess = (props: {isAuth:boolean}) => {
 
     const [number, setGuess] = useState('')
-    const [message, setMessage] = useState('You got 5 chances')
+    const [message, setMessage] = useState('')
 
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
