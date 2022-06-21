@@ -115,9 +115,9 @@ func User(c *fiber.Ctx) error {
 		c.Status(fiber.StatusAccepted)
 		return c.JSON(token.Claims)
 	} else {
-		c.Status(fiber.StatusInternalServerError)
+		c.Status(fiber.StatusUnauthorized)
 		return c.JSON(fiber.Map{
-			"message": "Internal Server Error!",
+			"message": "Unauthorized!",
 		})
 	}
 }

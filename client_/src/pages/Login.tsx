@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useState} from 'react';
 import { Navigate } from "react-router-dom";
 
-const Login = (props: {setEmail: (email: string) => void})=> {
+const Login = (props: {setIsAuth: (isAuth: boolean) => void})=> {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [redirect, setRedirect] = useState(false);
@@ -18,10 +18,12 @@ const Login = (props: {setEmail: (email: string) => void})=> {
                 password
             })
         });
-
+        
         setRedirect(true)
         
         const content = await response.json()
+        props.setIsAuth(content.message)
+
     }
     if (redirect) {
         return <Navigate to="/"/>;
