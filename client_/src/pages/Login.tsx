@@ -31,7 +31,9 @@ const Login = (props: {setIsAuth: (isAuth: boolean) => void})=> {
 
     return (
         <form onSubmit={submit}>
-          <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+        <div className='center'>
+              <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+        </div>
           <div className="form-floating">
             <input type="email" className="form-control" id="floatingInput" placeholder="Username"
                 required onChange={e => setEmail(e.target.value)}

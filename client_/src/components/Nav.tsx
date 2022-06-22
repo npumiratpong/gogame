@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 
 const Nav = (props: { isAuth: boolean, setIsAuth: (isAuth: boolean) => void }) => {
 
-    console.log(props.isAuth)
-
     const logout = async () => {
         await fetch('http://localhost:8000/api/logout', {
             method: 'POST',

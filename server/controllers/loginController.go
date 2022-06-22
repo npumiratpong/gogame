@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/dgrijalva/jwt-go/v4"
@@ -34,13 +33,9 @@ func GenerateJWT(user string) (string, error) {
 
 	claims := token.Claims.(jwt.MapClaims)
 
-	// fmt.Println(token)
-
 	claims["authorized"] = true
 	claims["issuer"] = user
 	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
-
-	fmt.Println(claims)
 
 	tokenString, err := token.SignedString(mySigningKey)
 	if err != nil {
@@ -98,26 +93,36 @@ func Login(c *fiber.Ctx) error {
 func User(c *fiber.Ctx) error {
 	cookie := c.Cookies("jwt")
 
-	token, err := jwt.Parse(cookie, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, errors.New("unexpected signing method")
-		}
-		return mySigningKey, nil
-	})
+	if len(cookie) > 0 {
 
-	if err != nil {
-		c.Status(fiber.StatusInternalServerError)
-		return c.JSON(fiber.Map{
-			"message": "Something went wrong",
+		token, err := jwt.Parse(cookie, func(token *jwt.Token) (interface{}, error) {
+			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+				return nil, errors.New("unexpected signing method")
+			}
+			return mySigningKey, nil
 		})
-	}
-	if token.Valid {
-		c.Status(fiber.StatusAccepted)
-		return c.JSON(token.Claims)
+
+		if err != nil {
+			c.Status(fiber.StatusInternalServerError)
+			return c.JSON(fiber.Map{
+				"message": "Something went wrong",
+			})
+
+		}
+
+		if token.Valid {
+			c.Status(fiber.StatusAccepted)
+			return c.JSON(token.Claims)
+		} else {
+			c.Status(fiber.StatusUnauthorized)
+			return c.JSON(fiber.Map{
+				"message": "Unauthorized!",
+			})
+		}
 	} else {
-		c.Status(fiber.StatusUnauthorized)
+		c.Status(fiber.StatusForbidden)
 		return c.JSON(fiber.Map{
-			"message": "Unauthorized!",
+			"message": "User is not Authorized",
 		})
 	}
 }

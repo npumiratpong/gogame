@@ -30,8 +30,6 @@ function App() {
           } else {
             setIsAuth(true)
           }
-
-          console.log('This is authorized : ' + isAuth)
       })()
   })
 

@@ -19,18 +19,70 @@
   border-top-right-radius: 0;
 }
 
-button {
-  background: #ededed;
-  border: 1px solid #ccc;
-  padding: 10px 30px;
-  border-radius: 3px;
+
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
   cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
-button:active {
-  background: #e5e5e5;
-  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
-     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
-          box-shadow: inset 0px 0px 5px #c1c1c1;
-   outline: none;
+.button:hover {background-color: #0a58ca}
+
+.button:active {
+  background-color: #0a58ca;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button-home {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button-home:hover {background-color: #0a58ca}
+
+.button-home:active {
+  background-color: #0a58ca;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+
+header {
+  display: flex;
+  text-align: left;
+
+  align-items: left;
+  white-space: nowrap;
 }
