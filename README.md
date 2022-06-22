@@ -2,7 +2,7 @@
 
 ## About Project
 
-This is a guessing game where you have 5 chances to win. 
+This is a guessing game where you have 5 chances to win.
 Number that you guess shoule be between 0-10, and characters are not allowed.
 
 This game has been created base on the following:
